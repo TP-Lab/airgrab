@@ -9,13 +9,17 @@
       <div class="current-account">当前账号：{{currentAccount}}</div>
       <div class="air-item" v-for="item, index in grabList">
         <div class="title">
-          <span class="symbol">代币:{{item.symbol}}</span> 
+          <img class="logo" :src="item.logo" >
+          <div class="base-info">
+            <span class="symbol">{{item.symbol}}</span><br>
+            <a class="website" :href="item.website">{{item.website}}</a> 
+          </div>
           <span class="balance">
             <button v-if="item.valid" class="grab-btn" @click="grab(index)">AirGrab</button>
             <span v-else>{{item.balance}}</span>
           </span> 
         </div>
-        <div><span class="label-title">官网:</span>  <a class="website" :href="item.website">{{item.website}}</a> </div>
+        <hr>
         <div><span class="label-title">简介:</span> {{item.description}}</div>
         <div></div>
       </div>
@@ -37,6 +41,7 @@ export default {
       grabList: [
         {
           symbol: "ATD",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_eosatidiumio_ATD.png',
           description:
             "Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!",
           website: "https://www.atidium.io/",
@@ -51,6 +56,7 @@ export default {
         },
         {
           symbol: "RIDL",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_ridlridlcoin_RIDL.png',
           description:
             "Support Scatter and trustless reputation on blockchain.",
           website: "https://ridl.get-scatter.com",
@@ -63,6 +69,7 @@ export default {
         },
         {
           symbol: "TRYBE",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_trybenetwork_TRYBE.png',
           description:
             "A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.",
           website: "https://trybe.one",
@@ -76,6 +83,7 @@ export default {
         },
         {
           symbol: "WIZZ",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_wizznetwork1_WIZZ.png',
           description:
             "Modern Decentralized Ecosystem, Built on EOSIO. Tools, Rewards, Chat, and more. AIGRAB NOW!",
           website: "https://wizz.network/",
@@ -90,6 +98,7 @@ export default {
         },
         {
           symbol: "POOR",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_poormantoken_POOR.png',
           description:
             "A public test of the airgrab and alternative airdrop methods.",
           website: "https://eostoolkit.io/airgrab",
@@ -181,11 +190,34 @@ export default {
 }
 .air-item {
   border: 1px solid #f1f1f1;
-  padding: 8px;
-  margin: 10px 0 15px;
+  padding: 10px;
+  margin: 10px 0 20px;
   font-size: 12px;
-  background-color: #f3f3f3;
-  box-shadow: 0 0 5px 0 #eee;
+  background-color: #f9f9f9;
+ 
+  background: linear-gradient(
+    to right,
+    rgb(250, 251, 252) 0%,
+    rgb(243, 245, 247) 100%
+  ); 
+
+  box-shadow: 0 0 5px 0 #ddd;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+hr {
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+.base-info {
+  display: inline-block;
+  vertical-align: middle
 }
 
 .current-account {
@@ -209,22 +241,9 @@ div {
   border-radius: 2px;
   border: none;
   color: #fff;
-  padding: 5px 12px;
+  padding: 6px 13px;
   background: rgb(122, 188, 255); /* Old browsers */
-  background: -moz-linear-gradient(
-    left,
-    rgba(122, 188, 255, 1) 0%,
-    rgba(96, 171, 248, 1) 46%,
-    rgba(96, 171, 248, 1) 46%,
-    rgba(64, 150, 238, 1) 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    left,
-    rgba(122, 188, 255, 1) 0%,
-    rgba(96, 171, 248, 1) 46%,
-    rgba(96, 171, 248, 1) 46%,
-    rgba(64, 150, 238, 1) 100%
-  ); 
+ 
   background: linear-gradient(
     to right,
     rgba(122, 188, 255, 1) 0%,
@@ -235,7 +254,7 @@ div {
 }
 .website {
   text-decoration: none;
-  color: #223ee8;
+  color: #3775dc;
 }
 .title {
   line-height: 30px;
