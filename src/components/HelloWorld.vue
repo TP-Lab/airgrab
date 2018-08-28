@@ -11,7 +11,8 @@
         <div class="title">
           <span class="symbol">代币:{{item.symbol}}</span> 
           <span class="balance">
-            <button class="grab-btn" @click="grab(index)">AirGrab</button>
+            <button v-if="item.valid" class="grab-btn" @click="grab(index)">AirGrab</button>
+            <span v-else>{{item.balance}}</span>
           </span> 
         </div>
         <div><span class="label-title">官网:</span>  <a class="website" :href="item.website">{{item.website}}</a> </div>
@@ -24,44 +25,29 @@
 
 <script>
 import tp from "tp-eosjs";
+import _ from 'lodash';
+import Vue from 'vue';
 
 export default {
   name: "HelloWorld",
   data() {
     return {
       currentAccount: "",
-      currentAddress: ''
-      // ,
-      // accountList: []
-    };
-  },
-  created() {
-    tp.getCurrentWallet().then(res => {
-      if (res.result) {
-        this.currentAccount = res.data.name;
-        this.currentAddress = res.data.address;
-      }
-    });
-    // Promise.all([walletListApi, currentWalletApi]).then(dataArr => {
-    //   let walletList = dataArr[0];
-    //   let currentWallet = dataArr[1];
-    //   let accountList = _find(walletList, wallet => wallet.blockchain_id === 4);
-    // });
-  },
-  computed: {
-    grabList: function() {
-      return [
+      currentAddress: '',
+      grabList: [
         {
           symbol: "ATD",
           description:
             "Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!",
           website: "https://www.atidium.io/",
           contract: "eosatidiumio",
+          claimKey: 'owner',
           actionName: "signup",
           data: {
-            owner: this.currentAccount,
             quantity: "0.0000 ATD"
-          }
+          },
+          valid: true,
+          balance: ''
         },
         {
           symbol: "RIDL",
@@ -69,10 +55,11 @@ export default {
             "Support Scatter and trustless reputation on blockchain.",
           website: "https://ridl.get-scatter.com",
           contract: "ridlridlcoin",
+          claimKey: 'claimer',
           actionName: "claim",
-          data: {
-            claimer: this.currentAccount
-          }
+          data: {},
+          valid: true,
+          balance: ''
         },
         {
           symbol: "TRYBE",
@@ -80,10 +67,12 @@ export default {
             "A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.",
           website: "https://trybe.one",
           contract: "trybenetwork",
+          claimKey: 'claimer',
           actionName: "claim",
-          data: {
-            claimer: this.currentAccount
-          }
+          data: {},
+          valid: true,
+          balance: ''
+
         },
         {
           symbol: "WIZZ",
@@ -91,18 +80,48 @@ export default {
             "Modern Decentralized Ecosystem, Built on EOSIO. Tools, Rewards, Chat, and more. AIGRAB NOW!",
           website: "https://wizz.network/",
           contract: "wizznetwork1",
+          claimKey: 'owner',
           actionName: "signup",
           data: {
-            owner: this.currentAccount,
             quantity: "0.0000 WIZZ"
-          }
+          },
+          valid: true,
+          balance: ''
+        },
+        {
+          symbol: "POOR",
+          description:
+            "A public test of the airgrab and alternative airdrop methods.",
+          website: "https://eostoolkit.io/airgrab",
+          contract: "poormantoken",
+          claimKey: 'owner',
+          actionName: "signup",
+          data: {
+            quantity: "0.0000 POOR"
+          },
+          valid: true,
+          balance: ''
         }
-      ];
-    }
+      ]
+    };
   },
+  created() {
+    tp.getCurrentWallet().then(res => {
+      if (res.result) {
+        this.currentAccount = res.data.name;
+        this.currentAddress = res.data.address;
+
+        this.getUserInfo();
+      }
+    });
+  },
+
   methods: {
     grab(index) {
       let grabInfo = this.grabList[index];
+
+      let extendsData = {};
+      extendsData[grabInfo.claimKey] = this.currentAccount;
   
       tp.pushEosAction({
         actions: [
@@ -113,19 +132,41 @@ export default {
                     actor: this.currentAccount,
                     permission: 'active'
                 }],
-                data: grabInfo.data
+                data: _.assignIn(grabInfo.data, extendsData)
             }
         ],
         account: this.currentAccount,
         address: this.currentAddress
       }).then(res => {
         if (res.result) {
-          Dialog.init('执行成功,txid:' + res.data.transactionId);
+          Dialog.init('执行成功');
+          this.getUserInfo();
         }
         else {
-          Dialog.init('执行失败'+ JSON.stringify(res.data));
+          Dialog.init('执行失败');
+          this.getUserInfo();
         }
       });
+    },
+    getUserInfo() {
+      let grabList = this.grabList;
+      _.forEach(grabList, item => {
+        let params = {
+          account: this.currentAccount,
+          contract: item.contract,
+          symbol: item.symbol
+        }
+        tp.getEosBalance(params).then(res => {
+          if (res.result) {
+            if (res.data.balance && res.data.balance.length) {
+              item.valid = false;
+              item.balance = res.data.balance[0];
+            }
+          }
+        })
+      });
+
+      this.grabList = grabList;
     }
   }
 };
@@ -143,7 +184,7 @@ export default {
   padding: 8px;
   margin: 10px 0 15px;
   font-size: 12px;
-  background-color: #f9f9f9;
+  background-color: #f3f3f3;
   box-shadow: 0 0 5px 0 #eee;
 }
 
@@ -183,14 +224,14 @@ div {
     rgba(96, 171, 248, 1) 46%,
     rgba(96, 171, 248, 1) 46%,
     rgba(64, 150, 238, 1) 100%
-  ); /* Chrome10-25,Safari5.1-6 */
+  ); 
   background: linear-gradient(
     to right,
     rgba(122, 188, 255, 1) 0%,
     rgba(96, 171, 248, 1) 46%,
     rgba(96, 171, 248, 1) 46%,
     rgba(64, 150, 238, 1) 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  ); 
 }
 .website {
   text-decoration: none;
@@ -206,50 +247,4 @@ div {
   float: right;
 }
 
-#divselect {
-    display: inline-block;
-    vertical-align: middle;
-    color: #666;
-    font-size: 13px;
-    width: 120px;
-    background-image: url(../../static/img/cc-down.png);
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: contain;
-  }
-
-  .account-ul {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    position: absolute;
-    list-style: none;
-    padding: 0;
-    display: none;
-    border: 1px solid #f1f1f1;
-    border-top: none;
-    z-index: 100;
-  }
-
-  
-  .account-ul li {
-    line-height: 30px;
-    background: #000;
-    padding: 4px 16px;
-    font-size: 14px;
-    border-bottom: 1px solid #333;
-  }
-
-  .account-ul li:last-child {
-      border-bottom: none;
-  }
-
-
-  #divselect em {
-    padding: 2px 10px 2px 6px;
-    line-height: 20px;
-    display: inline-block;
-    width: 100%;
-    color: #666;
-    font-style: normal;
-  }
 </style>
