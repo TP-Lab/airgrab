@@ -1,21 +1,20 @@
 # airgrab
 
-> A Vue.js project
+> AirGrab 信息
 
-## Build Setup
+请按照以下格式 提交代币信息：
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+``` javascript
+{
+    symbol: "ATD",
+    description: "Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!",
+    website: "https://www.atidium.io/",
+    contract: "eosatidiumio",
+    claimKey: 'owner',
+    actionName: "signup",
+    data: {
+        owner: 'account',
+        quantity: "0.0000 ATD"
+    }
+}
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
