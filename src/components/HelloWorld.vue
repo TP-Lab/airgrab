@@ -20,7 +20,8 @@
           </span> 
         </div>
         <hr>
-        <div><span class="label-title">简介:</span> {{item.description}}</div>
+        <div class="desc"><span class="label-title">简介:</span> {{item.description}}</div>
+        <div v-if="item.keywords" ><span class="label-title">关键词:</span> {{item.keywords}}</div>
         <div></div>
       </div>
       <p class="intro">本工具数据来源：https://eostoolkit.io/airgrab </p>
@@ -45,6 +46,7 @@ export default {
           description:
             "Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!",
           website: "https://www.atidium.io/",
+          keywords: '创世账号, 空投比例1:1',
           contract: "eosatidiumio",
           claimKey: 'owner',
           actionName: "signup",
@@ -59,6 +61,7 @@ export default {
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_ridlridlcoin_RIDL.png',
           description:
             "Support Scatter and trustless reputation on blockchain.",
+          keywords: '预计快照时间9月1日（抵押部分也计算在内）, 空投比例1:1',
           website: "https://ridl.get-scatter.com",
           contract: "ridlridlcoin",
           claimKey: 'claimer',
@@ -72,6 +75,7 @@ export default {
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_trybenetwork_TRYBE.png',
           description:
             "A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.",
+          keywords: '空投时间9月11日',
           website: "https://trybe.one",
           contract: "trybenetwork",
           claimKey: 'claimer',
@@ -101,6 +105,7 @@ export default {
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_poormantoken_POOR.png',
           description:
             "A public test of the airgrab and alternative airdrop methods.",
+          keywords: '8月31日快照',
           website: "https://eostoolkit.io/airgrab",
           contract: "poormantoken",
           claimKey: 'owner',
@@ -235,6 +240,9 @@ div {
 .label-title {
   font-size: 12px;
   font-weight: bold;
+}
+.desc {
+  margin-bottom: 5px;
 }
 .grab-btn {
   -webkit-appearance: none;
