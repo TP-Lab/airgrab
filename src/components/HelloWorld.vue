@@ -56,20 +56,20 @@ export default {
           valid: true,
           balance: ''
         },
-        {
-          symbol: "RIDL",
-          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_ridlridlcoin_RIDL.png',
-          description:
-            "Support Scatter and trustless reputation on blockchain.",
-          keywords: '预计快照时间9月1日（抵押部分也计算在内）, 空投比例1:1',
-          website: "https://ridl.get-scatter.com",
-          contract: "ridlridlcoin",
-          claimKey: 'claimer',
-          actionName: "claim",
-          data: {},
-          valid: true,
-          balance: ''
-        },
+        // {
+        //   symbol: "RIDL",
+        //   logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_ridlridlcoin_RIDL.png',
+        //   description:
+        //     "Support Scatter and trustless reputation on blockchain.",
+        //   keywords: '预计快照时间9月1日（抵押部分也计算在内）, 空投比例1:1',
+        //   website: "https://ridl.get-scatter.com",
+        //   contract: "ridlridlcoin",
+        //   claimKey: 'claimer',
+        //   actionName: "claim",
+        //   data: {},
+        //   valid: true,
+        //   balance: ''
+        // },
         {
           symbol: "TRYBE",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_trybenetwork_TRYBE.png',
@@ -104,8 +104,8 @@ export default {
           symbol: "POOR",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_poormantoken_POOR.png',
           description:
-            "A public test of the airgrab and alternative airdrop methods.",
-          keywords: '8月31日快照',
+            "A reward for people who STAKE and VOTE for EOS Block Producers with MONTHLY drops.",
+          keywords: '',
           website: "https://eostoolkit.io/airgrab",
           contract: "poormantoken",
           claimKey: 'owner',
