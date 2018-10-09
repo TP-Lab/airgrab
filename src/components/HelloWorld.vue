@@ -41,6 +41,38 @@ export default {
       currentAddress: '',
       grabList: [
         {
+          symbol: "SEVEN",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_xxxsevensxxx_SEVEN.png',
+          description:
+            "Sign Up and use your RAM (0.22kb) for receiving 10,000 SEVEN Tokens",
+          website: "https://www.se7ens.io/",
+          keywords: '',
+          contract: "xxxsevensxxx",
+          claimKey: 'owner',
+          actionName: "signup",
+          data: {
+            quantity: "10000.0000 SEVEN"
+          },
+          valid: true,
+          balance: ''
+        },
+        {
+          symbol: "DICE",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_betdicetoken_DICE.png',
+          description:
+            "Trustworthy, cost-free and pair EOS dice betting platform. Sign up for 1000 DICE",
+          website: "https://betdice.one/",
+          keywords: '',
+          contract: "betdicetoken",
+          claimKey: 'owner',
+          actionName: "signup",
+          data: {
+            quantity: "1000.0000 DICE"
+          },
+          valid: true,
+          balance: ''
+        },
+        {
           symbol: "ATD",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_eosatidiumio_ATD.png',
           description:
@@ -70,21 +102,20 @@ export default {
         //   valid: true,
         //   balance: ''
         // },
-        {
-          symbol: "TRYBE",
-          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_trybenetwork_TRYBE.png',
-          description:
-            "A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.",
-          keywords: '空投时间9月11日',
-          website: "https://trybe.one",
-          contract: "trybenetwork",
-          claimKey: 'claimer',
-          actionName: "claim",
-          data: {},
-          valid: true,
-          balance: ''
-
-        },
+        // {
+        //   symbol: "TRYBE",
+        //   logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_trybenetwork_TRYBE.png',
+        //   description:
+        //     "A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.",
+        //   keywords: '空投时间9月11日',
+        //   website: "https://trybe.one",
+        //   contract: "trybenetwork",
+        //   claimKey: 'claimer',
+        //   actionName: "claim",
+        //   data: {},
+        //   valid: true,
+        //   balance: ''
+        // },
         {
           symbol: "WIZZ",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_wizznetwork1_WIZZ.png',
