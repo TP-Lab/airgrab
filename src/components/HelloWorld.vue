@@ -46,6 +46,22 @@ export default {
     grabList() {
       return [
         {
+          symbol: "DEOS",
+          logo: 'https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_DEOS.png',
+          description:
+            "Play zero house edge, provably fair and truly decentralized games. All EOS Token holders can get their DEOS tokens by 1:1 rate",
+          website: "https://deosgames.com/",
+          keywords: '创世账号',
+          contract: "thedeosgames",
+          claimKey: 'owner',
+          actionName: "claim",
+          data: {
+            quantity: "0.0000 DEOS"
+          },
+          valid: true,
+          balance: ''
+        },
+        {
           symbol: "SEVEN",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_xxxsevensxxx_SEVEN.png',
           description:
@@ -61,22 +77,7 @@ export default {
           valid: true,
           balance: ''
         },
-        {
-          symbol: "DICE",
-          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_betdicetoken_DICE.png',
-          description:
-            "Trustworthy, cost-free and pair EOS dice betting platform. Sign up for 1000 DICE",
-          website: "https://betdice.one/",
-          keywords: '',
-          contract: "betdicetoken",
-          claimKey: 'owner',
-          actionName: "signup",
-          data: {
-            quantity: "1000.0000 DICE"
-          },
-          valid: true,
-          balance: ''
-        },
+        
         {
           symbol: "ATD",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_eosatidiumio_ATD.png',
@@ -93,34 +94,7 @@ export default {
           valid: true,
           balance: ''
         },
-        // {
-        //   symbol: "RIDL",
-        //   logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_ridlridlcoin_RIDL.png',
-        //   description:
-        //     "Support Scatter and trustless reputation on blockchain.",
-        //   keywords: '预计快照时间9月1日（抵押部分也计算在内）, 空投比例1:1',
-        //   website: "https://ridl.get-scatter.com",
-        //   contract: "ridlridlcoin",
-        //   claimKey: 'claimer',
-        //   actionName: "claim",
-        //   data: {},
-        //   valid: true,
-        //   balance: ''
-        // },
-        // {
-        //   symbol: "TRYBE",
-        //   logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_trybenetwork_TRYBE.png',
-        //   description:
-        //     "A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.",
-        //   keywords: '空投时间9月11日',
-        //   website: "https://trybe.one",
-        //   contract: "trybenetwork",
-        //   claimKey: 'claimer',
-        //   actionName: "claim",
-        //   data: {},
-        //   valid: true,
-        //   balance: ''
-        // },
+        
         {
           symbol: "WIZZ",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_wizznetwork1_WIZZ.png',
@@ -151,7 +125,51 @@ export default {
           },
           valid: true,
           balance: ''
-        }
+        },
+        {
+          symbol: "DICE",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_betdicetoken_DICE.png',
+          description:
+            "Trustworthy, cost-free and pair EOS dice betting platform. Sign up for 1000 DICE",
+          website: "https://betdice.one/",
+          keywords: '已结束',
+          contract: "betdicetoken",
+          claimKey: 'owner',
+          actionName: "signup",
+          data: {
+            quantity: "1000.0000 DICE"
+          },
+          valid: false,
+          balance: ''
+        },
+        {
+          symbol: "RIDL",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_ridlridlcoin_RIDL.png',
+          description:
+            "Support Scatter and trustless reputation on blockchain.",
+          keywords: '已结束',
+          website: "https://ridl.get-scatter.com",
+          contract: "ridlridlcoin",
+          claimKey: 'claimer',
+          actionName: "claim",
+          data: {},
+          valid: false,
+          balance: ''
+        },
+        {
+          symbol: "TRYBE",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_trybenetwork_TRYBE.png',
+          description:
+            "A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.",
+          keywords: '已结束',
+          website: "https://trybe.one",
+          contract: "trybenetwork",
+          claimKey: 'claimer',
+          actionName: "claim",
+          data: {},
+          valid: false,
+          balance: ''
+        },
       ]
     }
   },
