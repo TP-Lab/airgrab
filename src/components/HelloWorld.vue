@@ -47,11 +47,11 @@ export default {
       return [
         {
           symbol: "DEOS",
-          logo: 'https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_DEOS.png',
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_thedeosgames_DEOS.png',
           description:
             "Play zero house edge, provably fair and truly decentralized games. All EOS Token holders can get their DEOS tokens by 1:1 rate",
           website: "https://deosgames.com/",
-          keywords: '创世账号',
+          keywords: '创世账号,快照时间5月25日',
           contract: "thedeosgames",
           claimKey: 'owner',
           actionName: "claim",
@@ -61,23 +61,6 @@ export default {
           valid: true,
           balance: ''
         },
-        {
-          symbol: "SEVEN",
-          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_xxxsevensxxx_SEVEN.png',
-          description:
-            "Sign Up and use your RAM (0.22kb) for receiving 10,000 SEVEN Tokens",
-          website: "https://www.se7ens.io/",
-          keywords: '',
-          contract: "xxxsevensxxx",
-          claimKey: 'owner',
-          actionName: "signup",
-          data: {
-            quantity: "10000.0000 SEVEN"
-          },
-          valid: true,
-          balance: ''
-        },
-        
         {
           symbol: "ATD",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_eosatidiumio_ATD.png',
@@ -170,6 +153,22 @@ export default {
           valid: false,
           balance: ''
         },
+        {
+          symbol: "SEVEN",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_xxxsevensxxx_SEVEN.png',
+          description:
+            "Sign Up and use your RAM (0.22kb) for receiving 10,000 SEVEN Tokens",
+          website: "https://www.se7ens.io/",
+          keywords: '已结束',
+          contract: "xxxsevensxxx",
+          claimKey: 'owner',
+          actionName: "signup",
+          data: {
+            quantity: "10000.0000 SEVEN"
+          },
+          valid: false,
+          balance: ''
+        }
       ]
     }
   },
