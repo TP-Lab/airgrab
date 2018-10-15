@@ -51,7 +51,7 @@ export default {
           description:
             "Infiniverse is a decentralized augmented reality platform and virtual world on top of the real world. Infinicoin lets you register land and transact on the Infiniverse marketplace.",
           website: "https://www.infiniverse.net/",
-          keywords: '1:1 Airgrab, 快照时间12月前',
+          keywords: '1:1 Airgrab, ' + this.$t('i18nView.infSnapshot'),
           contract: "infinicoinio",
           claimKey: 'owner',
           actionName: "open",
@@ -67,7 +67,7 @@ export default {
           description:
             "Play zero house edge, provably fair and truly decentralized games. All EOS Token holders can get their DEOS tokens by 1:1 rate",
           website: "https://deosgames.com/",
-          keywords: '创世账号,快照时间5月25日',
+          keywords: this.$t('i18nView.genesis') + ',' + this.$t('i18nView.deosSnapshot'),
           contract: "thedeosgames",
           claimKey: 'owner',
           actionName: "claim",
@@ -83,7 +83,7 @@ export default {
           description:
             "Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!",
           website: "https://www.atidium.io/",
-          keywords: this.$t('i18nView.creation'),
+          keywords: this.$t('i18nView.genesis') + ',' + this.$t('i18nView.atdRatio'),
           contract: "eosatidiumio",
           claimKey: 'owner',
           actionName: "signup",
@@ -131,7 +131,7 @@ export default {
           description:
             "Trustworthy, cost-free and pair EOS dice betting platform. Sign up for 1000 DICE",
           website: "https://betdice.one/",
-          keywords: '已结束',
+          keywords: this.$t('i18nView.finished'),
           contract: "betdicetoken",
           claimKey: 'owner',
           actionName: "signup",
@@ -146,7 +146,7 @@ export default {
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_ridlridlcoin_RIDL.png',
           description:
             "Support Scatter and trustless reputation on blockchain.",
-          keywords: '已结束',
+          keywords: this.$t('i18nView.finished'),
           website: "https://ridl.get-scatter.com",
           contract: "ridlridlcoin",
           claimKey: 'claimer',
@@ -160,7 +160,7 @@ export default {
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_trybenetwork_TRYBE.png',
           description:
             "A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.",
-          keywords: '已结束',
+          keywords: this.$t('i18nView.finished'),
           website: "https://trybe.one",
           contract: "trybenetwork",
           claimKey: 'claimer',
@@ -175,7 +175,7 @@ export default {
           description:
             "Sign Up and use your RAM (0.22kb) for receiving 10,000 SEVEN Tokens",
           website: "https://www.se7ens.io/",
-          keywords: '已结束',
+          keywords: this.$t('i18nView.finished'),
           contract: "xxxsevensxxx",
           claimKey: 'owner',
           actionName: "signup",
@@ -199,7 +199,6 @@ export default {
       }
     });
 
-    console.log(this.$i18n);
   },
 
   methods: {
@@ -229,11 +228,11 @@ export default {
         address: this.currentAddress
       }).then(res => {
         if (res.result) {
-          Dialog.init('执行成功');
+          Dialog.init(this.$t('i18nView.successTip'));
           this.getUserInfo();
         }
         else {
-          Dialog.init('执行失败');
+          Dialog.init(this.$t('i18nView.failTip'));
           this.getUserInfo();
         }
       });
