@@ -59,6 +59,7 @@ export default {
   .language-change a:active,
   .language-change a:visited {
     color: #333;
+    text-decoration: none;
   }
 
   .language-change:active {
