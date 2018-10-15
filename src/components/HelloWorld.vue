@@ -46,6 +46,22 @@ export default {
     grabList() {
       return [
         {
+          symbol: "INF",
+          logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_infinicoinio_INF.png',
+          description:
+            "Infiniverse is a decentralized augmented reality platform and virtual world on top of the real world. Infinicoin lets you register land and transact on the Infiniverse marketplace.",
+          website: "https://www.infiniverse.net/",
+          keywords: '1:1 Airgrab, 快照时间12月前',
+          contract: "infinicoinio",
+          claimKey: 'owner',
+          actionName: "open",
+          data: {
+            symbol: "4,INF"
+          },
+          valid: true,
+          balance: ''
+        },
+        {
           symbol: "DEOS",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_thedeosgames_DEOS.png',
           description:
@@ -193,6 +209,10 @@ export default {
       let extendsData = {};
       extendsData[grabInfo.claimKey] = this.currentAccount;
 
+      if (grabInfo.symbol === 'INF') {
+        extendsData['ram_payer'] = this.currentAccount;
+      }
+  
       tp.pushEosAction({
         actions: [
             {
