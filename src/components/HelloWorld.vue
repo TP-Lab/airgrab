@@ -1,37 +1,36 @@
 <template>
   <div class="hello">
-    <p class="intro">AirGrab 是一种糖果分发的方式，需要消耗用户的内存（每种代币大概需要0.25KB 左右）。执行AirGrab后需要等待项目方空投。具体空投时间请查看各项目的简介和官网。</p>
-      <!-- <div id="divselect"> 
-          <em>请选择账号</em> 
+    <p class="intro">{{$t('i18nView.text')}}</p>
+      <!-- <div id="divselect">
+          <em>请选择账号</em>
           <ul class="account-ul">
-          </ul> 
+          </ul>
       </div>  -->
-      <div class="current-account">当前账号：{{currentAccount}}</div>
-      <div class="air-item" v-for="item, index in grabList">
+      <div class="current-account">{{$t('i18nView.account')}}：{{currentAccount}}</div>
+      <div class="air-item" v-for="(item, index) in grabList">
         <div class="title">
           <img class="logo" :src="item.logo" >
           <div class="base-info">
             <span class="symbol">{{item.symbol}}</span><br>
-            <a class="website" :href="item.website">{{item.website}}</a> 
+            <a class="website" :href="item.website">{{item.website}}</a>
           </div>
           <span class="balance">
             <button v-if="item.valid" class="grab-btn" @click="grab(index)">AirGrab</button>
             <span v-else>{{item.balance}}</span>
-          </span> 
+          </span>
         </div>
         <hr>
-        <div class="desc"><span class="label-title">简介:</span> {{item.description}}</div>
-        <div v-if="item.keywords" ><span class="label-title">关键词:</span> {{item.keywords}}</div>
+        <div class="desc"><span class="label-title">{{$t('i18nView.synopsis')}}:</span> {{item.description}}</div>
+        <div v-if="item.keywords" ><span class="label-title">{{$t('i18nView.keyword')}}:</span> {{item.keywords}}</div>
         <div></div>
       </div>
-      <p class="intro">本工具数据来源：https://eostoolkit.io/airgrab </p>
+      <p class="intro">{{$t('i18nView.data')}}：https://eostoolkit.io/airgrab </p>
   </div>
 </template>
 
 <script>
 import tp from "tp-eosjs";
 import _ from 'lodash';
-import Vue from 'vue';
 
 export default {
   name: "HelloWorld",
@@ -39,7 +38,13 @@ export default {
     return {
       currentAccount: "",
       currentAddress: '',
-      grabList: [
+
+    };
+  },
+
+  computed: {
+    grabList() {
+      return [
         {
           symbol: "SEVEN",
           logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_xxxsevensxxx_SEVEN.png',
@@ -78,7 +83,7 @@ export default {
           description:
             "Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!",
           website: "https://www.atidium.io/",
-          keywords: '创世账号, 空投比例1:1',
+          keywords: this.$t('i18nView.creation'),
           contract: "eosatidiumio",
           claimKey: 'owner',
           actionName: "signup",
@@ -148,8 +153,9 @@ export default {
           balance: ''
         }
       ]
-    };
+    }
   },
+
   created() {
     tp.getCurrentWallet().then(res => {
       if (res.result) {
@@ -159,6 +165,8 @@ export default {
         this.getUserInfo();
       }
     });
+
+    console.log(this.$i18n);
   },
 
   methods: {
@@ -167,7 +175,7 @@ export default {
 
       let extendsData = {};
       extendsData[grabInfo.claimKey] = this.currentAccount;
-  
+
       tp.pushEosAction({
         actions: [
             {
@@ -193,6 +201,7 @@ export default {
         }
       });
     },
+
     getUserInfo() {
       let grabList = this.grabList;
       _.forEach(grabList, item => {
@@ -230,12 +239,12 @@ export default {
   margin: 10px 0 20px;
   font-size: 12px;
   background-color: #f9f9f9;
- 
+
   background: linear-gradient(
     to right,
     rgb(250, 251, 252) 0%,
     rgb(243, 245, 247) 100%
-  ); 
+  );
 
   box-shadow: 0 0 5px 0 #ddd;
 }
@@ -282,14 +291,14 @@ div {
   color: #fff;
   padding: 6px 13px;
   background: rgb(122, 188, 255); /* Old browsers */
- 
+
   background: linear-gradient(
     to right,
     rgba(122, 188, 255, 1) 0%,
     rgba(96, 171, 248, 1) 46%,
     rgba(96, 171, 248, 1) 46%,
     rgba(64, 150, 238, 1) 100%
-  ); 
+  );
 }
 .website {
   text-decoration: none;
