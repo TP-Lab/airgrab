@@ -39,6 +39,7 @@ export default {
       currentAccount: "",
       currentAddress: '',
       grabList: [
+          
           {
             symbol: "INF",
             logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_infinicoinio_INF.png',
@@ -117,6 +118,22 @@ export default {
               quantity: "0.0000 POOR"
             },
             valid: true,
+            balance: ''
+          },
+          {
+            symbol: 'IGC',
+            logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_eosindiegame_IGC.png',
+            description:
+              this.$t('i18nView.igcIntro'),
+            website: "https://github.com/EOSIndieGame/EOS-IndieGame",
+            keywords: this.$t('i18nView.finished'),
+            contract: "eosindiegame",
+            claimKey: 'actor',
+            actionName: "claim",
+            data: {
+              token: "100.0000 IGC"
+            },
+            valid: false,
             balance: ''
           },
           {
@@ -284,8 +301,8 @@ export default {
 }
 
 .logo {
-  width: 35px;
-  height: 35px;
+  width: 38px;
+  height: 38px;
   display: inline-block;
   vertical-align: middle;
   margin-right: 6px;
@@ -296,7 +313,8 @@ hr {
 }
 .base-info {
   display: inline-block;
-  vertical-align: middle
+  vertical-align: middle;
+  line-height: 2;
 }
 
 .current-account {
@@ -339,13 +357,17 @@ div {
   color: #3775dc;
 }
 .title {
+  position: relative;
   line-height: 30px;
   margin: 0 0 4px;
 }
 
 .balance {
+  position: absolute;
   display: inline-block;
-  float: right;
+  right: 0px;
+  top: -2px;
+  z-index: 999;
 }
 
 </style>

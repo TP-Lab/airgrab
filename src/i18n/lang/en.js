@@ -12,7 +12,9 @@ const en = {
     atdRatio: 'airdrop ratio 1:1',
     deosSnapshot: 'Snapshot May 25',
     successTip: 'Succeed',
-    failTip: 'Failed'
+    failTip: 'Failed',
+    igcIntro: 'IGC(Indie Game Coin) is the Token for the EOS Indie Game platform',
+    igckeywords: '100 for each account'
   }
 };
 

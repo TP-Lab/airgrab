@@ -12,7 +12,9 @@ const zh = {
     atdRatio: '空投比例1:1',
     deosSnapshot: '快照时间5月25日',
     successTip: '执行成功',
-    failTip: '执行失败'
+    failTip: '执行失败',
+    igcIntro: 'IGC(Indie Game Coin) 是EOSIndieGame 去中心化的EOS独立游戏组织发行的可以在游戏平台中使用和流通的Token',
+    igckeywords: '每个账号100个，总量有限'
   }
 };
 
