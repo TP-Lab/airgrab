@@ -14,7 +14,8 @@ const zh = {
     successTip: '执行成功',
     failTip: '执行失败',
     igcIntro: 'IGC(Indie Game Coin) 是EOSIndieGame 去中心化的EOS独立游戏组织发行的可以在游戏平台中使用和流通的Token',
-    igckeywords: '每个账号100个，总量有限'
+    igckeywords: '每个账号100个，总量有限',
+    seedIntro: '快照时间10月24日,少于100EOS的账号,总量:1000wSEED/2w账号,2019年初发放'
   }
 };
 

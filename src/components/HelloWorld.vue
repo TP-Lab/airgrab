@@ -39,7 +39,6 @@ export default {
       currentAccount: "",
       currentAddress: '',
       grabList: [
-          
           {
             symbol: "INF",
             logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_infinicoinio_INF.png',
@@ -88,7 +87,6 @@ export default {
             valid: true,
             balance: ''
           },
-
           {
             symbol: "WIZZ",
             logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_wizznetwork1_WIZZ.png',
@@ -118,6 +116,22 @@ export default {
               quantity: "0.0000 POOR"
             },
             valid: true,
+            balance: ''
+          },
+          {
+            symbol: "SEED",
+            logo: 'https://dapp.mytokenpocket.vip/token-logo/EOS_parslseed123_seed.jpg',
+            description:
+              "Parsl is a supply chain technology company. People within the cannabis industry, who pay subscription fees to use the Parsl platform need to do so using SEED tokens. SEED token holders are entitled to rewards under the terms that are specified in documents on the Parsl website.",
+            website: "https://www.parsl.co",
+            keywords: this.$t('i18nView.seedIntro') + ',' + this.$t('i18nView.finished'),
+            contract: "parslseed123",
+            claimKey: 'owner',
+            actionName: "signup",
+            data: {
+              sym: "4,SEED"
+            },
+            valid: false,
             balance: ''
           },
           {

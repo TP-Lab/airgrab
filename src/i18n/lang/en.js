@@ -10,11 +10,12 @@ const en = {
     infSnapshot: 'Snapshot before Dec',
     genesis: 'Genesis account',
     atdRatio: 'airdrop ratio 1:1',
-    deosSnapshot: 'Snapshot May 25',
+    deosSnapshot: 'Snapshot May 25th',
     successTip: 'Succeed',
     failTip: 'Failed',
     igcIntro: 'IGC(Indie Game Coin) is the Token for the EOS Indie Game platform',
-    igckeywords: '100 for each account'
+    igckeywords: '100 for each account',
+    seedIntro: 'Snapshot October 25th,less then 100EOS,Total:10 million SEED with 20000 accounts,Issued in early 2019'
   }
 };
 
