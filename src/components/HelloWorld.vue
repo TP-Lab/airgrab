@@ -47,6 +47,23 @@ export default {
       currentAddress: "",
       grabList: [
         {
+          symbol: "BRM",
+          logo:
+            "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_openbrmeos11_BRM.png",
+          description:
+            "Very First Open source Billing and Revenue Management on Blockchain. OpenBRM is a carrier-grade billing platform aimed at telecommunications, Subscription, Utilities and logistics organizations.",
+          website: "https://openbrm.io/",
+          keywords: "1 BRM：1 EOS, " + this.$t("i18nView.brmSnapshot"),
+          contract: "openbrmeos11",
+          claimKey: "owner",
+          actionName: "open",
+          data: {
+            symbol: "3,BRM"
+          },
+          valid: true,
+          balance: ""
+        },
+        {
           symbol: "HVT",
           logo: "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_HVT.PNG",
           description: this.$t("i18nView.hvtInfo"),
@@ -289,7 +306,11 @@ export default {
       let extendsData = {};
       extendsData[grabInfo.claimKey] = this.currentAccount;
 
-      if (grabInfo.symbol === "INF" || grabInfo.symbol === "NEB") {
+      if (
+        grabInfo.symbol === "INF" ||
+        grabInfo.symbol === "NEB" ||
+        grabInfo.symbol === "BRM"
+      ) {
         extendsData["ram_payer"] = this.currentAccount;
       }
 
