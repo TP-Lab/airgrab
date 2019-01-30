@@ -19,7 +19,12 @@ const en = {
     hvtSnapshot: 'Snapshot November 4th, account which no less than 1 EOS',
     nebSnapshot: 'around 15th - 20th december',
     hvtInfo: 'HireVibes is an EOS-based decentralized recruitment platform that will be governed by the HireVibes Decentralized Autonomous Community (DAC) using HVT tokens. This platform connects job seekers, employers and recruiters, encouraging people to apply directly or recommend job for others.',
-    brmSnapshot: 'Snapshot at 24th December, with balance under 500 EOS'
+    brmSnapshot: 'Snapshot at 24th December, with balance under 500 EOS',
+    betftyKeywords: '200 tokens per account, 10000 account total, ',
+    slamSnapshot: 'Snapshot at 15th January，airdrop at 17th January, 1 EOS: 10 SLAM, account with EOS under 1M',
+    zosSnapshot: '',
+    unavailable: 'Unavailable',
+    claimed: 'Already Claimed'
   }
 };
 

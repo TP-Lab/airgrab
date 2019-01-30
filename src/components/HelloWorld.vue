@@ -7,6 +7,40 @@
           </ul>
     </div>-->
     <div class="current-account">{{$t('i18nView.account')}}：{{currentAccount}}</div>
+
+    <h3>Claim</h3>
+
+    <div class="air-item" v-for="(item, index) in claimList">
+      <div class="title">
+        <img class="logo" :src="item.logo">
+        <div class="base-info">
+          <span class="symbol">{{item.symbol}}</span>
+          <br>
+          <a class="website" :href="item.website">{{item.website}}</a>
+        </div>
+        <span class="balance">
+          <button
+            v-if="item.canClaim"
+            class="grab-btn"
+            @click="grab(index, 'claim')"
+          >Claim {{item.balance}}</button>
+          <span v-else-if="item.claimed">{{$t('i18nView.claimed')}} {{item.balance}}</span>
+          <span v-else>{{$t('i18nView.unavailable')}}</span>
+        </span>
+      </div>
+      <hr>
+      <div class="desc">
+        <span class="label-title">{{$t('i18nView.synopsis')}}:</span>
+        {{item.description}}
+      </div>
+      <div v-if="item.keywords">
+        <span class="label-title">{{$t('i18nView.keyword')}}:</span>
+        {{item.keywords}}
+      </div>
+      <div></div>
+    </div>
+
+    <h3>AirGrab</h3>
     <div class="air-item" v-for="(item, index) in grabList">
       <div class="title">
         <img class="logo" :src="item.logo">
@@ -16,7 +50,7 @@
           <a class="website" :href="item.website">{{item.website}}</a>
         </div>
         <span class="balance">
-          <button v-if="item.valid" class="grab-btn" @click="grab(index)">AirGrab</button>
+          <button v-if="item.valid" class="grab-btn" @click="grab(index, 'airgrab')">AirGrab</button>
           <span v-else>{{item.balance}}</span>
         </span>
       </div>
@@ -31,7 +65,7 @@
       </div>
       <div></div>
     </div>
-    <p class="intro">{{$t('i18nView.data')}}：https://eostoolkit.io/airgrab</p>
+    <!-- <p class="intro">{{$t('i18nView.data')}}：https://eostoolkit.io/airgrab</p> -->
   </div>
 </template>
 
@@ -45,7 +79,64 @@ export default {
     return {
       currentAccount: "",
       currentAddress: "",
+
+      claimList: [
+        {
+          symbol: "ZOS",
+          logo:
+            "https://tp-statics.cdn.bcebos.com/token/BOS_zosdiscounts_ZOS.jpg",
+          description:
+            "ZOS is a unique token on the EOS Blockchain. ZOS is an Electronic Discount Token System and offers discounts on payments for services rendered by AirDropsDAC.",
+          website: "https://www.airdropsdac.com/zos",
+          keywords: this.$t("i18nView.zosSnapshot"),
+          contract: "zosdiscounts",
+          claimKey: "owner",
+          actionName: "claim",
+          data: {
+            sym: "4,ZOS"
+          },
+          canClaim: false,
+          claimed: false,
+          valid: true,
+          balance: ""
+        }
+      ],
       grabList: [
+        {
+          symbol: "SLAM",
+          logo:
+            "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_slamdevelops_SLAM.png",
+          description:
+            "SLAM games is a gambling platform powered by the EOS blockchain. The SLAM gaming center is a space where you can play interactive games with a clean, modern UI, which is easy to use to enhance your gaming experience.",
+          website: "https://www.slamgames.io/",
+          keywords: this.$t("i18nView.slamSnapshot"),
+          contract: "slamdevelops",
+          claimKey: "owner",
+          actionName: "signup",
+          data: {
+            quantity: "0.00000000 SLAM"
+          },
+          valid: true,
+          balance: ""
+        },
+        // {
+        //   symbol: "BETFTY",
+        //   logo:
+        //     "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_betftymainac_BETFTY.png",
+        //   description:
+        //     "The Bet50 platform is an online betting site for e-sports, live sports of various kinds as well as dice games. Bet50 token is an international payment system built on the EOS blockchain. It is used for making and closing bets on BET50 Esports platform, dice gambling and in their online Casino and will be used to buy Gift Cards.",
+        //   website: "https://betfty.com",
+        //   keywords: this.$t("i18nView.betftyKeywords"),
+        //   contract: "betftymainac",
+        //   claimKey: "user",
+        //   actionName: "doico",
+        //   data: {
+        //     "payout": 100000,
+        //     "type": "airdrop"
+        //   },
+        //   valid: true,
+        //   balance: ""
+        // },
         {
           symbol: "BRM",
           logo:
@@ -300,8 +391,52 @@ export default {
   },
 
   methods: {
-    grab(index) {
+    // claim(index) {
+    //   let grabInfo = this.claimList[index];
+
+    //   let extendsData = {};
+    //   extendsData[grabInfo.claimKey] = this.currentAccount;
+
+    //   // if (
+    //   //   grabInfo.symbol === "INF" ||
+    //   //   grabInfo.symbol === "NEB" ||
+    //   //   grabInfo.symbol === "BRM" ||
+    //   //   grabInfo.symbol === "BETFTY"
+    //   // ) {
+    //   //   extendsData["ram_payer"] = this.currentAccount;
+    //   // }
+
+    //   tp.pushEosAction({
+    //     actions: [
+    //       {
+    //         account: grabInfo.contract,
+    //         name: grabInfo.actionName,
+    //         authorization: [
+    //           {
+    //             actor: this.currentAccount,
+    //             permission: "active"
+    //           }
+    //         ],
+    //         data: _.assignIn(grabInfo.data, extendsData)
+    //       }
+    //     ],
+    //     account: this.currentAccount,
+    //     address: this.currentAddress
+    //   }).then(res => {
+    //     if (res.result) {
+    //       Dialog.init(this.$t("i18nView.successTip"));
+    //       this.getUserInfo();
+    //     } else {
+    //       Dialog.init(this.$t("i18nView.failTip"));
+    //       this.getUserInfo();
+    //     }
+    //   });
+    // },
+    grab(index, type) {
       let grabInfo = this.grabList[index];
+      if (type === "claim") {
+        grabInfo = this.claimList[index];
+      }
 
       let extendsData = {};
       extendsData[grabInfo.claimKey] = this.currentAccount;
@@ -309,7 +444,8 @@ export default {
       if (
         grabInfo.symbol === "INF" ||
         grabInfo.symbol === "NEB" ||
-        grabInfo.symbol === "BRM"
+        grabInfo.symbol === "BRM" ||
+        grabInfo.symbol === "BETFTY"
       ) {
         extendsData["ram_payer"] = this.currentAccount;
       }
@@ -375,6 +511,32 @@ export default {
       });
 
       this.grabList = grabList;
+
+      let claimList = this.claimList;
+      _.forEach(claimList, item => {
+        let params = {
+          code: item.contract,
+          json: true,
+          scope: this.currentAccount,
+          table: "accounts"
+        };
+        tp.getEosTableRows(params).then(res => {
+          if (res.result) {
+            if (res.data.rows && res.data.rows.length) {
+              item.balance = res.data.rows[0].balance;
+              if (res.data.rows[0].claimed === 0) {
+                item.canClaim = true;
+                item.claimed = false;
+              } else {
+                item.canClaim = false;
+                item.claimed = true;
+              }
+            } else {
+              item.canClaim = false;
+            }
+          }
+        });
+      });
     }
   }
 };
