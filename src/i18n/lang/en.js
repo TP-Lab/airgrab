@@ -3,6 +3,7 @@ const en = {
     language: 'Language',
     account: 'Account',
     text: 'AirGrab is a way of distributing candies that consumes the user\'s RAM (about 0.25KB per kind of token). After AirGrab, we will get the airdrop according to the related team. For specific airdrop time, please see the introduction and official website of each project.',
+    claimText: 'Claimable.token is a new way to distributing tokens. Users need to claim the token by execute claim action or transfer tokens to another account. Unclaimed tokens can be recovered after some claiming period.',
     synopsis: 'Description',
     keyword: 'Keywords',
     data: 'Data Source',
@@ -24,7 +25,8 @@ const en = {
     slamSnapshot: 'Snapshot at 15th January，airdrop at 17th January, 1 EOS: 10 SLAM, account with EOS under 1M',
     zosSnapshot: '',
     unavailable: 'Unavailable',
-    claimed: 'Already Claimed'
+    claimed: 'Claimed',
+    xblSnapshot: 'Snapshot at 20th January 2019, account with balacne more than 100 EOS, claim before 20th March 2019, 1000 EOS:1.22 XBL'
   }
 };
 

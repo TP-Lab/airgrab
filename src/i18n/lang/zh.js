@@ -3,6 +3,7 @@ const zh = {
     language: '切换语言',
     account: '当前账号',
     text: 'AirGrab 是一种糖果分发的方式，需要消耗用户的内存（每种代币大概需要0.25KB 左右）。执行AirGrab后需要等待项目方空投。具体空投时间请查看各项目的简介和官网。',
+    claimText: 'Claim 是一种新的糖果分发方式，项目方会直接空投代币给用户，用户需要通过转账或执行Claim操作来确认是否消耗内存保留代币（同样0.25KB 左右），未被确认的代币可能会在一段时间后被项目方收回。',
     synopsis: '简介',
     keyword: '关键字',
     data: '本工具数据来源',
@@ -24,7 +25,8 @@ const zh = {
     slamSnapshot: '1月15日快照，1月17日发放, 1 EOS: 10 SLAM, 小于100万EOS的账号',
     zosSnapshot: '',
     unavailable: '无可领取额度',
-    claimed: '已领取'
+    claimed: '已领取',
+    xblSnapshot: '19年1月20日快照，超过100EOS余额的账号，领取截止时间19年3月20日, 1000 EOS:1.22 XBL'
 
   }
 };

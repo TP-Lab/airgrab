@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <p class="intro">{{$t('i18nView.text')}}</p>
     <!-- <div id="divselect">
           <em>请选择账号</em>
           <ul class="account-ul">
@@ -9,7 +8,7 @@
     <div class="current-account">{{$t('i18nView.account')}}：{{currentAccount}}</div>
 
     <h3>Claim</h3>
-
+    <p class="intro">{{$t('i18nView.claimText')}}</p>
     <div class="air-item" v-for="(item, index) in claimList">
       <div class="title">
         <img class="logo" :src="item.logo">
@@ -41,6 +40,7 @@
     </div>
 
     <h3>AirGrab</h3>
+    <p class="intro">{{$t('i18nView.text')}}</p>
     <div class="air-item" v-for="(item, index) in grabList">
       <div class="title">
         <img class="logo" :src="item.logo">
@@ -103,40 +103,22 @@ export default {
       ],
       grabList: [
         {
-          symbol: "SLAM",
+          symbol: "XBL",
           logo:
-            "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_slamdevelops_SLAM.png",
+            "https://tp-statics.cdn.bcebos.com/token/1551273080111-XBLtoken.png",
           description:
-            "SLAM games is a gambling platform powered by the EOS blockchain. The SLAM gaming center is a space where you can play interactive games with a clean, modern UI, which is easy to use to enhance your gaming experience.",
-          website: "https://www.slamgames.io/",
-          keywords: this.$t("i18nView.slamSnapshot"),
-          contract: "slamdevelops",
+            "The Billionaire Token - the first super-deflationary, gaming and gambling token. The Airgrab will end on the 12th of March 2019! Everyone who had more than 100 EOS in their wallets on the 20th of January 2019 is eligible to Airgrab XBL. The ratio is 0.00122 to 1 - this means that for every 1000 EOS, you will receive 1.22 XBL.",
+          website: "https://billionairetoken.com",
+          keywords: this.$t("i18nView.xblSnapshot"),
+          contract: "billionairet",
           claimKey: "owner",
-          actionName: "signup",
+          actionName: "open",
           data: {
-            quantity: "0.00000000 SLAM"
+            symbol: "4,XBL"
           },
           valid: true,
           balance: ""
         },
-        // {
-        //   symbol: "BETFTY",
-        //   logo:
-        //     "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_betftymainac_BETFTY.png",
-        //   description:
-        //     "The Bet50 platform is an online betting site for e-sports, live sports of various kinds as well as dice games. Bet50 token is an international payment system built on the EOS blockchain. It is used for making and closing bets on BET50 Esports platform, dice gambling and in their online Casino and will be used to buy Gift Cards.",
-        //   website: "https://betfty.com",
-        //   keywords: this.$t("i18nView.betftyKeywords"),
-        //   contract: "betftymainac",
-        //   claimKey: "user",
-        //   actionName: "doico",
-        //   data: {
-        //     "payout": 100000,
-        //     "type": "airdrop"
-        //   },
-        //   valid: true,
-        //   balance: ""
-        // },
         {
           symbol: "BRM",
           logo:
@@ -256,6 +238,23 @@ export default {
             quantity: "0.0000 POOR"
           },
           valid: true,
+          balance: ""
+        },
+        {
+          symbol: "SLAM",
+          logo:
+            "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_slamdevelops_SLAM.png",
+          description:
+            "SLAM games is a gambling platform powered by the EOS blockchain. The SLAM gaming center is a space where you can play interactive games with a clean, modern UI, which is easy to use to enhance your gaming experience.",
+          website: "https://www.slamgames.io/",
+          keywords: this.$t("i18nView.finished"),
+          contract: "slamdevelops",
+          claimKey: "owner",
+          actionName: "signup",
+          data: {
+            quantity: "0.00000000 SLAM"
+          },
+          valid: false,
           balance: ""
         },
         {
@@ -391,47 +390,6 @@ export default {
   },
 
   methods: {
-    // claim(index) {
-    //   let grabInfo = this.claimList[index];
-
-    //   let extendsData = {};
-    //   extendsData[grabInfo.claimKey] = this.currentAccount;
-
-    //   // if (
-    //   //   grabInfo.symbol === "INF" ||
-    //   //   grabInfo.symbol === "NEB" ||
-    //   //   grabInfo.symbol === "BRM" ||
-    //   //   grabInfo.symbol === "BETFTY"
-    //   // ) {
-    //   //   extendsData["ram_payer"] = this.currentAccount;
-    //   // }
-
-    //   tp.pushEosAction({
-    //     actions: [
-    //       {
-    //         account: grabInfo.contract,
-    //         name: grabInfo.actionName,
-    //         authorization: [
-    //           {
-    //             actor: this.currentAccount,
-    //             permission: "active"
-    //           }
-    //         ],
-    //         data: _.assignIn(grabInfo.data, extendsData)
-    //       }
-    //     ],
-    //     account: this.currentAccount,
-    //     address: this.currentAddress
-    //   }).then(res => {
-    //     if (res.result) {
-    //       Dialog.init(this.$t("i18nView.successTip"));
-    //       this.getUserInfo();
-    //     } else {
-    //       Dialog.init(this.$t("i18nView.failTip"));
-    //       this.getUserInfo();
-    //     }
-    //   });
-    // },
     grab(index, type) {
       let grabInfo = this.grabList[index];
       if (type === "claim") {
@@ -445,7 +403,8 @@ export default {
         grabInfo.symbol === "INF" ||
         grabInfo.symbol === "NEB" ||
         grabInfo.symbol === "BRM" ||
-        grabInfo.symbol === "BETFTY"
+        grabInfo.symbol === "BETFTY" ||
+        grabInfo.symbol === "XBL"
       ) {
         extendsData["ram_payer"] = this.currentAccount;
       }
@@ -524,7 +483,7 @@ export default {
           if (res.result) {
             if (res.data.rows && res.data.rows.length) {
               item.balance = res.data.rows[0].balance;
-              if (res.data.rows[0].claimed === 0) {
+              if (res.data.rows[0].claimed === 1) {
                 item.canClaim = true;
                 item.claimed = false;
               } else {
@@ -545,7 +504,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .intro {
-  font-size: 13px;
+  font-size: 12px;
   padding: 0 10px;
   margin-bottom: 20px;
 }
@@ -585,6 +544,10 @@ hr {
 .current-account {
   font-size: 13px;
   color: #333;
+}
+
+h3 {
+  margin: 20px 10px 5px;
 }
 
 div {
