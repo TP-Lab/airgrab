@@ -26,7 +26,10 @@ const en = {
     zosSnapshot: '',
     unavailable: 'Unavailable',
     claimed: 'Claimed',
-    xblSnapshot: 'Snapshot at 20th January 2019, account with balacne more than 100 EOS, claim before 20th March 2019, 1000 EOS:1.22 XBL'
+    xblSnapshot: 'Snapshot at 20th January 2019, account with balacne more than 100 EOS, claim before 20th March 2019, 1000 EOS:1.22 XBL',
+    emtSnapshot: 'Snapshot at February 2019, account with balancle > 0.5 EOS, 10 EMT',
+    peosSnapshot: 'Snapshot at February 15th 2019, 1 EOS : 1 pEOS',
+    mptSnapshot: 'Snapshot at March 15th 2019, 1 EOS : 1 MPT'
   }
 };
 

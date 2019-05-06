@@ -26,8 +26,10 @@ const zh = {
     zosSnapshot: '',
     unavailable: '无可领取额度',
     claimed: '已领取',
-    xblSnapshot: '19年1月20日快照，超过100EOS余额的账号，领取截止时间19年3月20日, 1000 EOS:1.22 XBL'
-
+    xblSnapshot: '19年1月20日快照，超过100EOS余额的账号，领取截止时间19年3月20日, 1000 EOS:1.22 XBL',
+    emtSnapshot: '19年2月快照，超过0.5EOS余额的账号，10EMT',
+    peosSnapshot: '19年2月15日快照, 1 EOS : 1 pEOS',
+    mptSnapshot: '19年3月15日快照, 1 EOS : 1 MPT'
   }
 };
 

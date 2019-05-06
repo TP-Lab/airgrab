@@ -82,6 +82,82 @@ export default {
 
       claimList: [
         {
+          symbol: "TULIP",
+          logo:
+            "https://tp-statics.cdn.bcebos.com/token/1557154701951-tulip.png",
+          description:
+            "Use TULIP at the Tulip Conference and EOSIO Block Producer & Technology Summit! June 3rd to 6th - San Francisco ",
+          website: "https://www.tulipconf.com/",
+          keywords: "",
+          contract: "tulip.vr",
+          claimKey: "owner",
+          actionName: "claim",
+          data: {
+            sym: "4,TULIP"
+          },
+          canClaim: false,
+          claimed: false,
+          valid: true,
+          balance: ""
+        },
+        {
+          symbol: "MPT",
+          logo:
+            "https://tp-statics.cdn.bcebos.com/token/1554727183622-metpacktoken-mpt.png",
+          description:
+            "A blockchain-based solution to improve cost-effectiveness within the metal packaging industry.",
+          website: "http://www.metpacktoken.org/",
+          keywords: this.$t("i18nView.mptSnapshot"),
+          contract: "metpacktoken",
+          claimKey: "owner",
+          actionName: "claim",
+          data: {
+            sym: "4,MPT"
+          },
+          canClaim: false,
+          claimed: false,
+          valid: true,
+          balance: ""
+        },
+
+        {
+          symbol: "PEOS",
+          logo:
+            "https://tp-statics.cdn.bcebos.com/token/1551067319125-peostoken.jpg",
+          description:
+            "pEOS enables private & untraceable transactions on EOS.",
+          website: "https://peos.one/",
+          keywords: this.$t("i18nView.peosSnapshot"),
+          contract: "thepeostoken",
+          claimKey: "owner",
+          actionName: "claim",
+          data: {
+            sym: "PEOS"
+          },
+          canClaim: false,
+          claimed: false,
+          valid: true,
+          balance: ""
+        },
+        {
+          symbol: "EMT",
+          logo: "https://tp-statics.cdn.bcebos.com/token/EOS_Manatenew.PNG",
+          description:
+            "TECHNOLOGY FOR THE FUTURE OF MUSIC.Claim the 10 EMT airdrop and discover the benefits of holding EMT tokens.",
+          website: "https://emanate.live/",
+          keywords: this.$t("i18nView.emtSnapshot"),
+          contract: "emanateoneos",
+          claimKey: "owner",
+          actionName: "claim",
+          data: {
+            sym: "4,EMT"
+          },
+          canClaim: false,
+          claimed: false,
+          valid: true,
+          balance: ""
+        },
+        {
           symbol: "ZOS",
           logo:
             "https://tp-statics.cdn.bcebos.com/token/BOS_zosdiscounts_ZOS.jpg",
@@ -102,23 +178,6 @@ export default {
         }
       ],
       grabList: [
-        {
-          symbol: "XBL",
-          logo:
-            "https://tp-statics.cdn.bcebos.com/token/1551273080111-XBLtoken.png",
-          description:
-            "The Billionaire Token - the first super-deflationary, gaming and gambling token. The Airgrab will end on the 12th of March 2019! Everyone who had more than 100 EOS in their wallets on the 20th of January 2019 is eligible to Airgrab XBL. The ratio is 0.00122 to 1 - this means that for every 1000 EOS, you will receive 1.22 XBL.",
-          website: "https://billionairetoken.com",
-          keywords: this.$t("i18nView.xblSnapshot"),
-          contract: "billionairet",
-          claimKey: "owner",
-          actionName: "open",
-          data: {
-            symbol: "4,XBL"
-          },
-          valid: true,
-          balance: ""
-        },
         {
           symbol: "BRM",
           logo:
@@ -147,23 +206,6 @@ export default {
           actionName: "claim",
           data: {
             sym: "4,HVT"
-          },
-          valid: true,
-          balance: ""
-        },
-        {
-          symbol: "NEB",
-          logo:
-            "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_nebulatokenn_ENB.png",
-          description:
-            "Nebula is a decentralized, curated list of professionals and job opportunities.",
-          website: "https://nebulaprotocol.com",
-          keywords: "1000 NEB, " + this.$t("i18nView.nebSnapshot"),
-          contract: "nebulatokenn",
-          claimKey: "owner",
-          actionName: "open",
-          data: {
-            symbol: "4,NEB"
           },
           valid: true,
           balance: ""
@@ -238,6 +280,40 @@ export default {
             quantity: "0.0000 POOR"
           },
           valid: true,
+          balance: ""
+        },
+        {
+          symbol: "NEB",
+          logo:
+            "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_nebulatokenn_ENB.png",
+          description:
+            "Nebula is a decentralized, curated list of professionals and job opportunities.",
+          website: "https://nebulaprotocol.com",
+          keywords: "1000 NEB, " + this.$t("i18nView.nebSnapshot"),
+          contract: "nebulatokenn",
+          claimKey: "owner",
+          actionName: "open",
+          data: {
+            symbol: "4,NEB"
+          },
+          valid: false,
+          balance: ""
+        },
+        {
+          symbol: "XBL",
+          logo:
+            "https://tp-statics.cdn.bcebos.com/token/1551273080111-XBLtoken.png",
+          description:
+            "The Billionaire Token - the first super-deflationary, gaming and gambling token. The Airgrab will end on the 12th of March 2019! Everyone who had more than 100 EOS in their wallets on the 20th of January 2019 is eligible to Airgrab XBL. The ratio is 0.00122 to 1 - this means that for every 1000 EOS, you will receive 1.22 XBL.",
+          website: "https://billionairetoken.com",
+          keywords: this.$t("i18nView.xblSnapshot"),
+          contract: "billionairet",
+          claimKey: "owner",
+          actionName: "open",
+          data: {
+            symbol: "4,XBL"
+          },
+          valid: false,
           balance: ""
         },
         {
@@ -483,12 +559,22 @@ export default {
           if (res.result) {
             if (res.data.rows && res.data.rows.length) {
               item.balance = res.data.rows[0].balance;
-              if (res.data.rows[0].claimed === 1) {
-                item.canClaim = true;
-                item.claimed = false;
+              if (item.symbol === "ZOS") {
+                if (res.data.rows[0].claimed === 1) {
+                  item.canClaim = true;
+                  item.claimed = false;
+                } else {
+                  item.canClaim = false;
+                  item.claimed = true;
+                }
               } else {
-                item.canClaim = false;
-                item.claimed = true;
+                if (res.data.rows[0].claimed === 0) {
+                  item.canClaim = true;
+                  item.claimed = false;
+                } else {
+                  item.canClaim = false;
+                  item.claimed = true;
+                }
               }
             } else {
               item.canClaim = false;
