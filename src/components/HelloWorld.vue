@@ -7,14 +7,41 @@
     </div>-->
     <div class="current-account">{{$t('i18nView.account')}}：{{currentAccount}}</div>
 
+    <h3>AirGrab</h3>
+    <p class="intro">{{$t('i18nView.text')}}</p>
+    <div class="air-item" v-for="(item, index) in grabList">
+      <div class="title">
+        <img class="logo" :src="item.logo" />
+        <div class="base-info">
+          <span class="symbol">{{item.symbol}}</span>
+          <br />
+          <a class="website" :href="item.website">{{item.website}}</a>
+        </div>
+        <span class="balance">
+          <button v-if="item.valid" class="grab-btn" @click="grab(index, 'airgrab')">AirGrab</button>
+          <span v-else>{{item.balance}}</span>
+        </span>
+      </div>
+      <hr />
+      <div class="desc">
+        <span class="label-title">{{$t('i18nView.synopsis')}}:</span>
+        {{item.description}}
+      </div>
+      <div v-if="item.keywords">
+        <span class="label-title">{{$t('i18nView.keyword')}}:</span>
+        {{item.keywords}}
+      </div>
+      <div></div>
+    </div>
+
     <h3>Claim</h3>
     <p class="intro">{{$t('i18nView.claimText')}}</p>
     <div class="air-item" v-for="(item, index) in claimList">
       <div class="title">
-        <img class="logo" :src="item.logo">
+        <img class="logo" :src="item.logo" />
         <div class="base-info">
           <span class="symbol">{{item.symbol}}</span>
-          <br>
+          <br />
           <a class="website" :href="item.website">{{item.website}}</a>
         </div>
         <span class="balance">
@@ -27,34 +54,7 @@
           <span v-else>{{$t('i18nView.unavailable')}}</span>
         </span>
       </div>
-      <hr>
-      <div class="desc">
-        <span class="label-title">{{$t('i18nView.synopsis')}}:</span>
-        {{item.description}}
-      </div>
-      <div v-if="item.keywords">
-        <span class="label-title">{{$t('i18nView.keyword')}}:</span>
-        {{item.keywords}}
-      </div>
-      <div></div>
-    </div>
-
-    <h3>AirGrab</h3>
-    <p class="intro">{{$t('i18nView.text')}}</p>
-    <div class="air-item" v-for="(item, index) in grabList">
-      <div class="title">
-        <img class="logo" :src="item.logo">
-        <div class="base-info">
-          <span class="symbol">{{item.symbol}}</span>
-          <br>
-          <a class="website" :href="item.website">{{item.website}}</a>
-        </div>
-        <span class="balance">
-          <button v-if="item.valid" class="grab-btn" @click="grab(index, 'airgrab')">AirGrab</button>
-          <span v-else>{{item.balance}}</span>
-        </span>
-      </div>
-      <hr>
+      <hr />
       <div class="desc">
         <span class="label-title">{{$t('i18nView.synopsis')}}:</span>
         {{item.description}}
@@ -82,25 +82,6 @@ export default {
 
       claimList: [
         {
-          symbol: "TULIP",
-          logo:
-            "https://tp-statics.cdn.bcebos.com/token/1557154701951-tulip.png",
-          description:
-            "Use TULIP at the Tulip Conference and EOSIO Block Producer & Technology Summit! June 3rd to 6th - San Francisco ",
-          website: "https://www.tulipconf.com/",
-          keywords: "",
-          contract: "tulip.vr",
-          claimKey: "owner",
-          actionName: "claim",
-          data: {
-            sym: "4,TULIP"
-          },
-          canClaim: false,
-          claimed: false,
-          valid: true,
-          balance: ""
-        },
-        {
           symbol: "MPT",
           logo:
             "https://tp-statics.cdn.bcebos.com/token/1554727183622-metpacktoken-mpt.png",
@@ -113,26 +94,6 @@ export default {
           actionName: "claim",
           data: {
             sym: "4,MPT"
-          },
-          canClaim: false,
-          claimed: false,
-          valid: true,
-          balance: ""
-        },
-
-        {
-          symbol: "PEOS",
-          logo:
-            "https://tp-statics.cdn.bcebos.com/token/1551067319125-peostoken.jpg",
-          description:
-            "pEOS enables private & untraceable transactions on EOS.",
-          website: "https://peos.one/",
-          keywords: this.$t("i18nView.peosSnapshot"),
-          contract: "thepeostoken",
-          claimKey: "owner",
-          actionName: "claim",
-          data: {
-            sym: "PEOS"
           },
           canClaim: false,
           claimed: false,
@@ -175,9 +136,104 @@ export default {
           claimed: false,
           valid: true,
           balance: ""
+        },
+        {
+          symbol: "PEOS",
+          logo:
+            "https://tp-statics.cdn.bcebos.com/token/1551067319125-peostoken.jpg",
+          description:
+            "pEOS enables private & untraceable transactions on EOS.",
+          website: "https://peos.one/",
+          keywords:
+            this.$t("i18nView.finished") +
+            "," +
+            this.$t("i18nView.peosSnapshot"),
+          contract: "thepeostoken",
+          claimKey: "owner",
+          actionName: "claim",
+          data: {
+            sym: "PEOS"
+          },
+          canClaim: false,
+          claimed: false,
+          valid: false,
+          balance: ""
+        },
+        {
+          symbol: "TULIP",
+          logo:
+            "https://tp-statics.cdn.bcebos.com/token/1557154701951-tulip.png",
+          description:
+            "Use TULIP at the Tulip Conference and EOSIO Block Producer & Technology Summit! June 3rd to 6th - San Francisco ",
+          website: "https://www.tulipconf.com/",
+          keywords: this.$t("i18nView.finished"),
+          contract: "tulip.vr",
+          claimKey: "owner",
+          actionName: "claim",
+          data: {
+            sym: "4,TULIP"
+          },
+          canClaim: false,
+          claimed: false,
+          valid: false,
+          balance: ""
         }
       ],
       grabList: [
+        {
+          symbol: "BBT",
+          logo:
+            "https://tp-statics.tokenpocket.pro/token/1570545522024-blockbase-coin.png",
+          description:
+            "BlockBase is a distributed system that runs on EOSIO and provides secure and distributed database storage services. It’s designed to assure confidentiality, integrity and availability of the data it stores. It’s easily scalable, and can store databases from small Dapps up to enterprise businesses.",
+          website: "https://www.blockbase.network/",
+          keywords: this.$t("i18nView.bbtAirgrab"),
+          contract: "blockbasetkn",
+          claimKey: "owner",
+          actionName: "signup",
+          data: {
+            quantity: "0.0000 BBT"
+          },
+          valid: true,
+          balance: ""
+        },
+
+        {
+          symbol: "ATD",
+          logo:
+            "https://dapp.mytokenpocket.vip/token-logo/EOS_eosatidiumio_ATD.png",
+          description:
+            "Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!",
+          website: "https://www.atidium.io/",
+          keywords:
+            this.$t("i18nView.genesis") + "," + this.$t("i18nView.atdRatio"),
+          contract: "eosatidiumio",
+          claimKey: "owner",
+          actionName: "signup",
+          data: {
+            quantity: "0.0000 ATD"
+          },
+          valid: true,
+          balance: ""
+        },
+
+        {
+          symbol: "POOR",
+          logo:
+            "https://dapp.mytokenpocket.vip/token-logo/EOS_poormantoken_POOR.png",
+          description:
+            "A reward for people who STAKE and VOTE for EOS Block Producers with MONTHLY drops.",
+          keywords: "",
+          website: "https://eostoolkit.io/airgrab",
+          contract: "poormantoken",
+          claimKey: "owner",
+          actionName: "signup",
+          data: {
+            quantity: "0.0000 POOR"
+          },
+          valid: true,
+          balance: ""
+        },
         {
           symbol: "BRM",
           logo:
@@ -200,53 +256,39 @@ export default {
           logo: "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_HVT.PNG",
           description: this.$t("i18nView.hvtInfo"),
           website: "https://www.hirevibes.io/",
-          keywords: "1 HVT：4 EOS, " + this.$t("i18nView.hvtSnapshot"),
+          keywords:
+            this.$t("i18nView.finished") +
+            "," +
+            "1 HVT：4 EOS, " +
+            this.$t("i18nView.hvtSnapshot"),
           contract: "hirevibeshvt",
           claimKey: "owner",
           actionName: "claim",
           data: {
             sym: "4,HVT"
           },
-          valid: true,
+          valid: false,
           balance: ""
         },
-
         {
-          symbol: "DEOS",
+          symbol: "NEB",
           logo:
-            "https://dapp.mytokenpocket.vip/token-logo/EOS_thedeosgames_DEOS.png",
+            "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_nebulatokenn_ENB.png",
           description:
-            "Play zero house edge, provably fair and truly decentralized games. All EOS Token holders can get their DEOS tokens by 1:1 rate",
-          website: "https://deosgames.com/",
+            "Nebula is a decentralized, curated list of professionals and job opportunities.",
+          website: "https://nebulaprotocol.com",
           keywords:
-            this.$t("i18nView.genesis") +
+            this.$t("i18nView.finished") +
             "," +
-            this.$t("i18nView.deosSnapshot"),
-          contract: "thedeosgames",
+            "1000 NEB, " +
+            this.$t("i18nView.nebSnapshot"),
+          contract: "nebulatokenn",
           claimKey: "owner",
-          actionName: "claim",
+          actionName: "open",
           data: {
-            quantity: "0.0000 DEOS"
+            symbol: "4,NEB"
           },
-          valid: true,
-          balance: ""
-        },
-        {
-          symbol: "ATD",
-          logo:
-            "https://dapp.mytokenpocket.vip/token-logo/EOS_eosatidiumio_ATD.png",
-          description:
-            "Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!",
-          website: "https://www.atidium.io/",
-          keywords:
-            this.$t("i18nView.genesis") + "," + this.$t("i18nView.atdRatio"),
-          contract: "eosatidiumio",
-          claimKey: "owner",
-          actionName: "signup",
-          data: {
-            quantity: "0.0000 ATD"
-          },
-          valid: true,
+          valid: false,
           balance: ""
         },
         {
@@ -259,42 +301,9 @@ export default {
           contract: "wizznetwork1",
           claimKey: "owner",
           actionName: "signup",
+          keywords: this.$t("i18nView.finished"),
           data: {
             quantity: "0.0000 WIZZ"
-          },
-          valid: true,
-          balance: ""
-        },
-        {
-          symbol: "POOR",
-          logo:
-            "https://dapp.mytokenpocket.vip/token-logo/EOS_poormantoken_POOR.png",
-          description:
-            "A reward for people who STAKE and VOTE for EOS Block Producers with MONTHLY drops.",
-          keywords: "",
-          website: "https://eostoolkit.io/airgrab",
-          contract: "poormantoken",
-          claimKey: "owner",
-          actionName: "signup",
-          data: {
-            quantity: "0.0000 POOR"
-          },
-          valid: true,
-          balance: ""
-        },
-        {
-          symbol: "NEB",
-          logo:
-            "https://gz.bcebos.com/v1/tokenpocket/token-logo/EOS_nebulatokenn_ENB.png",
-          description:
-            "Nebula is a decentralized, curated list of professionals and job opportunities.",
-          website: "https://nebulaprotocol.com",
-          keywords: "1000 NEB, " + this.$t("i18nView.nebSnapshot"),
-          contract: "nebulatokenn",
-          claimKey: "owner",
-          actionName: "open",
-          data: {
-            symbol: "4,NEB"
           },
           valid: false,
           balance: ""
@@ -306,12 +315,37 @@ export default {
           description:
             "The Billionaire Token - the first super-deflationary, gaming and gambling token. The Airgrab will end on the 12th of March 2019! Everyone who had more than 100 EOS in their wallets on the 20th of January 2019 is eligible to Airgrab XBL. The ratio is 0.00122 to 1 - this means that for every 1000 EOS, you will receive 1.22 XBL.",
           website: "https://billionairetoken.com",
-          keywords: this.$t("i18nView.xblSnapshot"),
+          keywords:
+            this.$t("i18nView.finished") +
+            "," +
+            this.$t("i18nView.xblSnapshot"),
           contract: "billionairet",
           claimKey: "owner",
           actionName: "open",
           data: {
             symbol: "4,XBL"
+          },
+          valid: false,
+          balance: ""
+        },
+        {
+          symbol: "DEOS",
+          logo:
+            "https://dapp.mytokenpocket.vip/token-logo/EOS_thedeosgames_DEOS.png",
+          description:
+            "Play zero house edge, provably fair and truly decentralized games. All EOS Token holders can get their DEOS tokens by 1:1 rate",
+          website: "https://deosgames.com/",
+          keywords:
+            this.$t("i18nView.finished") +
+            "," +
+            this.$t("i18nView.genesis") +
+            "," +
+            this.$t("i18nView.deosSnapshot"),
+          contract: "thedeosgames",
+          claimKey: "owner",
+          actionName: "claim",
+          data: {
+            quantity: "0.0000 DEOS"
           },
           valid: false,
           balance: ""

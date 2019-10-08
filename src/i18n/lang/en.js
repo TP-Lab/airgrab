@@ -18,7 +18,7 @@ const en = {
     igckeywords: '100 for each account',
     seedIntro: 'Snapshot October 25th,less then 100EOS,Total:10 million SEED with 20000 accounts,Issued in early 2019',
     hvtSnapshot: 'Snapshot November 4th, account which no less than 1 EOS',
-    nebSnapshot: 'around 15th - 20th december',
+    nebSnapshot: 'around 15th - 20th December',
     hvtInfo: 'HireVibes is an EOS-based decentralized recruitment platform that will be governed by the HireVibes Decentralized Autonomous Community (DAC) using HVT tokens. This platform connects job seekers, employers and recruiters, encouraging people to apply directly or recommend job for others.',
     brmSnapshot: 'Snapshot at 24th December, with balance under 500 EOS',
     betftyKeywords: '200 tokens per account, 10000 account total, ',
@@ -29,7 +29,8 @@ const en = {
     xblSnapshot: 'Snapshot at 20th January 2019, account with balacne more than 100 EOS, claim before 20th March 2019, 1000 EOS:1.22 XBL',
     emtSnapshot: 'Snapshot at February 2019, account with balancle > 0.5 EOS, 10 EMT',
     peosSnapshot: 'Snapshot at February 15th 2019, 1 EOS : 1 pEOS',
-    mptSnapshot: 'Snapshot at March 15th 2019, 1 EOS : 1 MPT'
+    mptSnapshot: 'Snapshot at March 15th 2019, 1 EOS : 1 MPT',
+    bbtAirgrab: 'Airgrab monthly during 2 years, since 8th October 2019'
   }
 };
 

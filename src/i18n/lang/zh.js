@@ -29,7 +29,8 @@ const zh = {
     xblSnapshot: '19年1月20日快照，超过100EOS余额的账号，领取截止时间19年3月20日, 1000 EOS:1.22 XBL',
     emtSnapshot: '19年2月快照，超过0.5EOS余额的账号，10EMT',
     peosSnapshot: '19年2月15日快照, 1 EOS : 1 pEOS',
-    mptSnapshot: '19年3月15日快照, 1 EOS : 1 MPT'
+    mptSnapshot: '19年3月15日快照, 1 EOS : 1 MPT',
+    bbtAirgrab: '19年10月开始, 每个月申领一次，持续2年'
   }
 };
 
