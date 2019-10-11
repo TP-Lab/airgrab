@@ -545,7 +545,6 @@ export default {
         }
       });
     },
-
     getUserInfo() {
       let grabList = this.grabList;
       _.forEach(grabList, item => {
@@ -563,19 +562,31 @@ export default {
             }
           });
         } else {
-          let params = {
-            account: this.currentAccount,
-            contract: item.contract,
-            symbol: item.symbol
-          };
-          tp.getEosBalance(params).then(res => {
-            if (res.result) {
-              if (res.data.balance && res.data.balance.length) {
-                item.valid = false;
-                item.balance = res.data.balance[0];
-              }
+          tp.getTableRows({
+            code: item.contract,
+            json: true,
+            scope: this.currentAccount,
+            table: "accounts"
+          }).then(res => {
+            if (res.result && res.data.rows.length) {
+              item.valid = false;
+              item.balance = res.data.rows[0].balance;
             }
           });
+
+          // let params = {
+          //   account: this.currentAccount,
+          //   contract: item.contract,
+          //   symbol: item.symbol
+          // };
+          // tp.getEosBalance(params).then(res => {
+          //   if (res.result) {
+          //     if (res.data.balance && res.data.balance.length) {
+          //       item.valid = false;
+          //       item.balance = res.data.balance[0];
+          //     }
+          //   }
+          // });
         }
       });
 

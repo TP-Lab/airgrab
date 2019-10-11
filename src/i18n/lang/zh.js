@@ -30,7 +30,7 @@ const zh = {
     emtSnapshot: '19年2月快照，超过0.5EOS余额的账号，10EMT',
     peosSnapshot: '19年2月15日快照, 1 EOS : 1 pEOS',
     mptSnapshot: '19年3月15日快照, 1 EOS : 1 MPT',
-    bbtAirgrab: '19年10月开始, 每个月申领一次，持续2年'
+    bbtAirgrab: '19年10月开始, 每个月一次，持续2年，每个账号只可领取一次，申领后下个月7号统一发放，领取数量与当月总量以及当月人数有关'
   }
 };
 
