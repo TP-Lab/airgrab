@@ -7,6 +7,36 @@
     </div>-->
     <div class="current-account">{{$t('i18nView.account')}}：{{currentAccount}}</div>
 
+    <h3>New</h3>
+    <div class="air-item">
+      <div class="title">
+        <img class="logo" src="https://dapp.tokenpocket.pro/tokens/marf.png" />
+        <div class="base-info">
+          <span class="symbol">MARF</span>
+          <br />
+          <a class="website" href="https://marf.io/">https://marf.io/</a>
+        </div>
+        <span class="balance">
+          <button
+            v-if="MARFcanClaim && MARFcanClaimNum"
+            class="grab-btn"
+            @click="grabMARF()"
+          >Claim {{MARFcanClaimNum}}</button>
+          <span v-else-if="MARFbalance">{{$t('i18nView.claimed')}} {{MARFbalance}}</span>
+          <span v-else>{{$t('i18nView.unavailable')}}</span>
+        </span>
+      </div>
+      <hr />
+      <div class="desc">
+        <span class="label-title">{{$t('i18nView.synopsis')}}:</span>
+        -
+      </div>
+      <div>
+        <span class="label-title">{{$t('i18nView.keyword')}}:</span>
+      </div>
+      <div></div>
+    </div>
+
     <h3>AirGrab</h3>
     <p class="intro">{{$t('i18nView.text')}}</p>
     <div class="air-item" v-for="(item, index) in grabList">
@@ -36,6 +66,7 @@
 
     <h3>Claim</h3>
     <p class="intro">{{$t('i18nView.claimText')}}</p>
+
     <div class="air-item" v-for="(item, index) in claimList">
       <div class="title">
         <img class="logo" :src="item.logo" />
@@ -72,6 +103,7 @@
 <script>
 import tp from "tp-eosjs";
 import _ from "lodash";
+import Axios from "axios";
 
 export default {
   name: "HelloWorld",
@@ -482,7 +514,10 @@ export default {
           valid: false,
           balance: ""
         }
-      ]
+      ],
+      MARFcanClaim: true,
+      MARFcanClaimNum: 0,
+      MARFbalance: 0
     };
   },
 
@@ -493,13 +528,92 @@ export default {
       if (res.result) {
         this.currentAccount = res.data.name;
         this.currentAddress = res.data.address;
+        this.currentPermission = _.includes(res.data.permissions, "active")
+          ? "active"
+          : res.data.permissions[0];
 
         this.getUserInfo();
+
+        this.getMARFInfo();
       }
     });
   },
 
   methods: {
+    grabMARF() {
+      tp.pushEosAction({
+        actions: [
+          // {
+          //   account: "themarftoken",
+          //   name: "open",
+          //   authorization: [
+          //     {
+          //       actor: this.currentAccount,
+          //       permission: this.currentPermission
+          //     }
+          //   ],
+          //   data: {
+          //     owner: this.currentAccount,
+          //     ram_payer: this.currentAccount,
+          //     symbol: "4,MARF"
+          //   }
+          // }
+          // ,
+          {
+            account: "marfairgrabb",
+            name: "claimtoken",
+            authorization: [
+              {
+                actor: this.currentAccount,
+                permission: this.currentPermission
+              }
+            ],
+            data: {
+              account_name: this.currentAccount
+            }
+          }
+        ],
+        account: this.currentAccount,
+        address: this.currentAddress
+      }).then(res => {
+        if (res.result) {
+          Dialog.init(this.$t("i18nView.successTip"));
+          this.getUserInfo();
+        } else {
+          Dialog.init(this.$t("i18nView.failTip"));
+          this.getUserInfo();
+        }
+      });
+    },
+    getMARFInfo() {
+      if (this.currentAccount) {
+        tp.getTableRows({
+          code: "themarftoken",
+          json: true,
+          scope: "themarftoken",
+          lower_bound: this.currentAccount,
+          upper_bound: this.currentAccount,
+          table: "available",
+          limit: 1
+        }).then(res => {
+          if (res.result && res.data.rows.length) {
+            this.MARFcanClaim = !res.data.rows[0].is_grabbed;
+            this.MARFbalance =
+              parseFloat(
+                parseFloat(res.data.rows[0].available) +
+                  parseFloat(res.data.rows[0].staked)
+              ).toFixed(4) + " MARF";
+          }
+        });
+        Axios.get(
+          "https://marfbackend.zero2pi.com/users/" + this.currentAccount
+        ).then(res => {
+          if (res.status === 200) {
+            this.MARFcanClaimNum = res.data;
+          }
+        });
+      }
+    },
     grab(index, type) {
       let grabInfo = this.grabList[index];
       if (type === "claim") {
@@ -527,7 +641,7 @@ export default {
             authorization: [
               {
                 actor: this.currentAccount,
-                permission: "active"
+                permission: this.currentPermission
               }
             ],
             data: _.assignIn(grabInfo.data, extendsData)
