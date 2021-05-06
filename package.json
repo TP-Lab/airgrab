@@ -15,7 +15,7 @@
     "lodash": "^4.17.10",
     "promise": "^8.0.1",
     "tp-eosjs": "^1.2.3",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "vconsole": "^3.2.0",
     "vue": "^2.5.2",
     "vue-i18n": "^8.2.1",
